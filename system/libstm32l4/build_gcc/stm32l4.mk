@@ -24,7 +24,7 @@ LIBNAME=libstm32l4
 TOOLCHAIN=gcc
 
 ifeq ($(OS),Windows_NT)
-DEV_NUL=NUL
+DEV_NUL=NUL.TXT
 else
 DEV_NUL=/dev/null
 endif
