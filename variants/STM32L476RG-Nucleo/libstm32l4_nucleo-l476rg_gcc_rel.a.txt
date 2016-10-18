@@ -61,7 +61,7 @@ stm32l4xx_hal_usart.o:
 00000000 t USART_DMATransmitCplt
 00000000 t USART_DMATxHalfCplt
 00000000 t USART_TransmitReceive_IT
-00000000 t USART_WaitOnFlagUntilTimeout.constprop.0
+00000000 t USART_WaitOnFlagUntilTimeout.constprop.1
 
 stm32l4xx_ll_exti.o:
 
@@ -271,7 +271,9 @@ stm32l4xx_hal_spi.o:
 00000000 t SPI_TxISR_16BIT
 00000000 t SPI_TxISR_8BIT
 00000000 t SPI_WaitFifoStateUntilTimeout
+00000000 t SPI_WaitFifoStateUntilTimeout.part.0
 00000000 t SPI_WaitFlagStateUntilTimeout
+00000000 t SPI_WaitFlagStateUntilTimeout.part.1
 
 stm32l4xx_hal_crc_ex.o:
 00000000 T HAL_CRCEx_Input_Data_Reverse
@@ -397,10 +399,10 @@ stm32l4xx_ll_rcc.o:
 stm32l4xx_hal_sd.o:
 
 stm32l4xx_hal_tim_ex.o:
+00000000 r CSWTCH.36
+00000000 r CSWTCH.37
+00000000 r CSWTCH.38
 00000000 r CSWTCH.39
-00000000 r CSWTCH.40
-00000000 r CSWTCH.41
-00000000 r CSWTCH.42
          U HAL_DMA_Start_IT
 00000000 W HAL_TIMEx_BreakCallback
 00000000 W HAL_TIMEx_CommutationCallback
@@ -649,7 +651,7 @@ stm32l4xx_hal_i2c.o:
 00000000 t I2C_RequestMemoryWrite
 00000000 t I2C_Slave_ISR
 00000000 t I2C_TransferConfig
-00000000 t I2C_WaitOnFlagUntilTimeout
+00000000 t I2C_WaitOnFlagUntilTimeout.constprop.10
 00000000 t I2C_WaitOnFlagUntilTimeout.part.2
 00000000 t I2C_WaitOnRXNEFlagUntilTimeout
 00000000 t I2C_WaitOnSTOPFlagUntilTimeout
@@ -1133,7 +1135,7 @@ uart_emul.o:
 00000000 t UART_Emul_DMAReceiveCplt
 00000000 t UART_Emul_DMATransmitCplt
 00000000 T UART_EMUL_EXTI_RX
-00000000 t UART_Emul_ReceiveFormatFrame.constprop.0
+00000000 t UART_Emul_ReceiveFormatFrame.constprop.1
 00000000 t UART_Emul_SetConfig_DMARx
 00000000 t UART_Emul_SetConfig_DMATx
 00000000 t UART_Emul_TransmitFormatFrame
