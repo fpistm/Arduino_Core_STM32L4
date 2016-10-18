@@ -128,22 +128,7 @@ void SystemClock_Config(void)
   /* MSI is enabled after System reset, activate PLL with MSI as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-#ifdef ENABLE_HIGH_SPEED
-  /*         The system Clock is configured as follows :
-    *            System Clock source            = PLL (MSI)
-    *            SYSCLK(Hz)                     = 80000000
-    *            HCLK(Hz)                       = 80000000
-    *            AHB Prescaler                  = 1
-    *            APB1 Prescaler                 = 1
-    *            APB2 Prescaler                 = 1
-    *            MSI Frequency(Hz)              = 4000000
-    *            PLL_M                          = 1
-    *            PLL_N                          = 40
-    *            PLL_R                          = 2
-    *            PLL_P                          = 7
-    *            PLL_Q                          = 4
-    *            Flash Latency(WS)              = 4
-  */
+
   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
   RCC_OscInitStruct.MSICalibrationValue = RCC_MSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
@@ -153,33 +138,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLP = 7;
   RCC_OscInitStruct.PLL.PLLQ = 4;
-#else
-  /*         The system Clock is configured as follows :
-    *            System Clock source            = PLL (MSI)
-    *            SYSCLK(Hz)                     = 64000000
-    *            HCLK(Hz)                       = 64000000
-    *            AHB Prescaler                  = 1
-    *            APB1 Prescaler                 = 1
-    *            APB2 Prescaler                 = 1
-    *            MSI Frequency(Hz)              = 4000000
-    *            PLL_M                          = 1
-    *            PLL_N                          = 32
-    *            PLL_R                          = 2
-    *            PLL_P                          = 7
-    *            PLL_Q                          = 4
-    *            Flash Latency(WS)              = 4
-  */
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
-  RCC_OscInitStruct.MSICalibrationValue = RCC_MSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
-  RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 32;
-  RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLP = 7;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
 
-#endif
   if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     /* Initialization Error */
