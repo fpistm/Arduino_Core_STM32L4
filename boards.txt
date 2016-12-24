@@ -1,5 +1,7 @@
 # See: http://code.google.com/p/arduino/wiki/Platforms
 
+menu.upload_method=Upload method
+
 ################################################################################
 # NUCLEO-L476RG board
 
@@ -22,4 +24,12 @@ NUCLEO-L476RG.build.variant=STM32L476RG-Nucleo
 NUCLEO-L476RG.build.variant_system_lib=libstm32l4_nucleo-l476rg_gcc_rel.a
 NUCLEO-L476RG.build.extra_flags=-mthumb -DSTM32L476xx
 
+#---------------------------- UPLOAD METHODS ---------------------------
+NUCLEO-L476RG.menu.upload_method.MassStorageMethod=Mass Storage
+NUCLEO-L476RG.menu.upload_method.MassStorageMethod.upload.protocol=
+NUCLEO-L476RG.menu.upload_method.MassStorageMethod.upload.tool=nucleoFlasher
+
+NUCLEO-L476RG.menu.upload_method.STLinkMethod=STLink
+NUCLEO-L476RG.menu.upload_method.STLinkMethod.upload.protocol=STLink
+NUCLEO-L476RG.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
 ################################################################################
