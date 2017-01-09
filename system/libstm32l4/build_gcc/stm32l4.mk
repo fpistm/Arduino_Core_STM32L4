@@ -42,11 +42,11 @@ endif
 
 # Board options
 ifeq ($(CHIP), __NUCLEO_L476RG__)
-CHIP_NAME=nucleo-l476rg
+CHIP_NAME=nucleo_l476rg
 CHIP_SERIE=STM32L4xx
 CFLAGS += -DSTM32L476xx
 # Output directories
-OUTPUT_BIN = ../../../variants/STM32L476RG-Nucleo
+OUTPUT_BIN = ../../../variants/STM32L476RG_Nucleo
 #Startup file
 CHIP_STARTUP_FILE=startup_stm32l476xx.s
 else
