@@ -20,11 +20,10 @@
 .SUFFIXES: .o .a .c .s
 SUB_MAKEFILES= debug.mk gcc.mk release.mk stm32l4.mk
 
-LIBNAME=libstm32l4
 TOOLCHAIN=gcc
 
 ifeq ($(OS),Windows_NT)
-DEV_NUL=NUL.TXT
+DEV_NUL=null.txt
 else
 DEV_NUL=/dev/null
 endif
@@ -41,18 +40,10 @@ endif
 #-------------------------------------------------------------------------------
 
 # Board options
-ifeq ($(CHIP), __NUCLEO_L476RG__)
-CHIP_NAME=nucleo_l476rg
 CHIP_SERIE=STM32L4xx
-CFLAGS += -DSTM32L476xx
-VARIANTS_PATH = ../../../variants/STM32L476RG_Nucleo
 # Output directories
 OUTPUT_BIN = $(VARIANTS_PATH)
-#Startup file
-CHIP_STARTUP_FILE=startup_stm32l476xx.s
-else
-$(error CHIP not recognized)
-endif
+CFLAGS += -D$(CHIP)
 
 # Libraries
 PROJECT_BASE_PATH = ..
@@ -80,7 +71,7 @@ VPATH+=$(STARTUP_FILE_PATH)
 
 INCLUDES = -I$(PROJECT_BASE_PATH)
 INCLUDES += -I$(HAL_ROOT_PATH)/Inc
-INCLUDES += -I$(PROJECT_BASE_PATH)/include
+#INCLUDES += -I$(PROJECT_BASE_PATH)/include
 INCLUDES += -I$(CMSIS_ARM_PATH)
 INCLUDES += -I$(CMSIS_ST_PATH)
 INCLUDES += -I$(CMSIS_CHIP_PATH)/Include
