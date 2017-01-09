@@ -45,8 +45,9 @@ ifeq ($(CHIP), __NUCLEO_L476RG__)
 CHIP_NAME=nucleo_l476rg
 CHIP_SERIE=STM32L4xx
 CFLAGS += -DSTM32L476xx
+VARIANTS_PATH = ../../../variants/STM32L476RG_Nucleo
 # Output directories
-OUTPUT_BIN = ../../../variants/STM32L476RG_Nucleo
+OUTPUT_BIN = $(VARIANTS_PATH)
 #Startup file
 CHIP_STARTUP_FILE=startup_stm32l476xx.s
 else
@@ -84,6 +85,7 @@ INCLUDES += -I$(CMSIS_ARM_PATH)
 INCLUDES += -I$(CMSIS_ST_PATH)
 INCLUDES += -I$(CMSIS_CHIP_PATH)/Include
 INCLUDES += -I$(STARTUP_FILE_PATH)
+INCLUDES += -I$(VARIANTS_PATH)
 
 #-------------------------------------------------------------------------------
 ifdef DEBUG
