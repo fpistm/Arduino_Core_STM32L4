@@ -24,19 +24,19 @@ SUBMAKE_OPTIONS=--no-builtin-rules --no-builtin-variables --no-print-directory
 # Rules
 #-------------------------------------------------------------------------------
 
-all : NUCLEO-L476RG
+all : NUCLEO_L476RG
 
 .PHONY: all
-NUCLEO-L476RG:
+NUCLEO_L476RG:
 	@echo ------------------------------------------------------------------------
 	@echo --- Making $@
 	@echo ---
-	@$(MAKE) CHIP=__NUCLEO_L476RG__ $(SUBMAKE_OPTIONS) -f stm32l4.mk
+	@$(MAKE) CHIP=STM32L476xx CHIP_STARTUP_FILE=startup_stm32l476xx.s LIBNAME=libstm32l4 CHIP_NAME=nucleo_l476rg VARIANTS_PATH=../../../variants/STM32L476RG_Nucleo $(SUBMAKE_OPTIONS) -f stm32l4.mk
 	@echo ------------------------------------------------------------------------
 
 .PHONY: clean
 clean:
 	@echo ------------------------------------------------------------------------
 	@echo --- Cleaning lib release and debug
-	@$(MAKE) CHIP=__NUCLEO_L476RG__ $(SUBMAKE_OPTIONS) -f stm32l4.mk $@
+	@$(MAKE) CHIP=STM32L476xx CHIP_STARTUP_FILE=startup_stm32l476xx.s LIBNAME=libstm32l4 CHIP_NAME=nucleo_l476rg VARIANTS_PATH=../../../variants/STM32L476RG_Nucleo $(SUBMAKE_OPTIONS) -f stm32l4.mk $@
 	@echo ------------------------------------------------------------------------

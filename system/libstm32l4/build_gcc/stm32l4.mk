@@ -20,11 +20,10 @@
 .SUFFIXES: .o .a .c .s
 SUB_MAKEFILES= debug.mk gcc.mk release.mk stm32l4.mk
 
-LIBNAME=libstm32l4
 TOOLCHAIN=gcc
 
 ifeq ($(OS),Windows_NT)
-DEV_NUL=NUL.TXT
+DEV_NUL=null.txt
 else
 DEV_NUL=/dev/null
 endif
@@ -41,17 +40,10 @@ endif
 #-------------------------------------------------------------------------------
 
 # Board options
-ifeq ($(CHIP), __NUCLEO_L476RG__)
-CHIP_NAME=nucleo-l476rg
 CHIP_SERIE=STM32L4xx
-CFLAGS += -DSTM32L476xx
 # Output directories
-OUTPUT_BIN = ../../../variants/STM32L476RG-Nucleo
-#Startup file
-CHIP_STARTUP_FILE=startup_stm32l476xx.s
-else
-$(error CHIP not recognized)
-endif
+OUTPUT_BIN = $(VARIANTS_PATH)
+CFLAGS += -D$(CHIP)
 
 # Libraries
 PROJECT_BASE_PATH = ..
@@ -79,11 +71,12 @@ VPATH+=$(STARTUP_FILE_PATH)
 
 INCLUDES = -I$(PROJECT_BASE_PATH)
 INCLUDES += -I$(HAL_ROOT_PATH)/Inc
-INCLUDES += -I$(PROJECT_BASE_PATH)/include
+#INCLUDES += -I$(PROJECT_BASE_PATH)/include
 INCLUDES += -I$(CMSIS_ARM_PATH)
 INCLUDES += -I$(CMSIS_ST_PATH)
 INCLUDES += -I$(CMSIS_CHIP_PATH)/Include
 INCLUDES += -I$(STARTUP_FILE_PATH)
+INCLUDES += -I$(VARIANTS_PATH)
 
 #-------------------------------------------------------------------------------
 ifdef DEBUG
@@ -159,8 +152,8 @@ create_output:
 #	@echo *$(A_SRC)
 #	@echo -------------------------
 
-	-@mkdir $(subst /,$(SEP),$(OUTPUT_BIN)) 1>$(DEV_NUL) 2>&1
-	-@mkdir $(OUTPUT_PATH) 1>$(DEV_NUL) 2>&1
+	-@mkdir -p $(subst /,$(SEP),$(OUTPUT_BIN)) 1>$(DEV_NUL) 2>&1
+	-@mkdir -p $(OUTPUT_PATH) 1>$(DEV_NUL) 2>&1
 	@echo ------------------------------------------------------------------------
 
 $(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: %.c
@@ -188,4 +181,4 @@ clean:
 	@echo ------------------------------------------------------------------------
 
 # dependencies
-$(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: $(PROJECT_BASE_PATH)/chip.h $(wildcard $(PROJECT_BASE_PATH)/include/*.h) $(wildcard $(CMSIS_BASE_PATH)/*.h)
+$(addprefix $(OUTPUT_PATH)/,$(C_OBJ)): $(OUTPUT_PATH)/%.o: $(wildcard $(PROJECT_BASE_PATH)/include/*.h) $(wildcard $(CMSIS_BASE_PATH)/*.h)
